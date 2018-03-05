@@ -86,7 +86,8 @@ unsigned int PacketFinderBase::numberOfDataToRead()
       break;
 
     case waitingForPayloadToEtx:
-      num = size_payload + size_etx + size_checksum_field;
+	  //return remaining length of data. --2018.03.05	
+      num = size_payload + size_etx + size_checksum_field - (buffer.size() - 3);
       break;
 
     case waitingForPayloadSize:
